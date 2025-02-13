@@ -1,0 +1,15 @@
+version: "3.9"
+services:
+  server:
+    build: .
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=development
+    networks:
+      - my_spring_cloud_network
+
+networks:
+  my_spring_cloud_network:
+    driver: bridge
