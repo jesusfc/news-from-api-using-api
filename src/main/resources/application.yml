@@ -4,10 +4,18 @@ server:
 spring:
   application:
     name: news
-###########################
-#### DATABASE SETTINGS ####
-###########################
-
+  ###########################
+  #### OPEN API SETTINGS #######
+  ###########################
+  ai:
+    openai:
+      api-key: ${OPEN_AI_API_KEY}
+      embedding:
+        options:
+          model: text-embedding-3-small
+      chat:
+        options:
+          model: gpt-4-turbo
 ###########################
 ###### LOGGING SETTINGS #####
 ###########################
