@@ -1,6 +1,7 @@
 package com.jesusfc.news.database.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 
 /**
@@ -19,8 +20,33 @@ import lombok.*;
 public class NewsEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id", nullable = false)
     private Long id;
 
+    @Size(max = 36)
+    @Column(name = "uuid")
+    private String uuid;
+
+    @Size(max = 150)
+    @Column(name = "title")
+    private String title;
+
+    @Lob
+    @Column(name = "description")
+    private String description;
+
+    /*
+    private String description;
+    private String keywords;
+    private String snippet;
+    private String url;
+    private String image_url;
+    private String language;
+    private String published_at;
+    private String source;
+    private String[] categories;
+    private String relevance_score;
+    private String locale;
+*/
 }

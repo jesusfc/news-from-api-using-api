@@ -3,7 +3,6 @@ package com.jesusfc.news.config;
 import feign.Logger;
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
-import feign.auth.BasicAuthRequestInterceptor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
