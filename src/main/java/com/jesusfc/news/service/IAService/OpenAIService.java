@@ -11,7 +11,9 @@ import org.springframework.ai.chat.prompt.Prompt;
  */
 public interface OpenAIService {
 
-    String getAnswer(String question);
+    String getForNewTitle(String question);
+
+    String getForNewsResume(String news);
 
     String getAnswer(Prompt prompt);
 

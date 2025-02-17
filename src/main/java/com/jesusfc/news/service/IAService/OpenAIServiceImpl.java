@@ -6,10 +6,6 @@ import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.ai.chat.prompt.PromptTemplate;
-import org.springframework.ai.openai.OpenAiAudioSpeechModel;
-import org.springframework.ai.openai.OpenAiChatModel;
-import org.springframework.ai.openai.OpenAiImageModel;
-import org.springframework.ai.vectorstore.SimpleVectorStore;
 import org.springframework.stereotype.Service;
 
 
@@ -22,6 +18,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class OpenAIServiceImpl implements OpenAIService {
 
+    private final static String ASK_FOR_TITLE_PROMPT = "Can you remake the following sentence '#TITLE#'?";
+    private final static String ASK_FOR_NEWS_PROMPT = "Can you resume the following sentence '#NEWS#'?";
+
     private final ChatClient chatClient;
 
     public OpenAIServiceImpl(ChatClient.Builder chatClientBuilder) {
@@ -29,8 +28,18 @@ public class OpenAIServiceImpl implements OpenAIService {
     }
 
     @Override
-    public String getAnswer(String question) {
-        PromptTemplate promptTemplate = new PromptTemplate(question);
+    public String getForNewTitle(String question) {
+        String newQuestion = ASK_FOR_TITLE_PROMPT.replace("#TITLE#", question);
+        PromptTemplate promptTemplate = new PromptTemplate(newQuestion);
+        Prompt prompt = promptTemplate.create();
+        ChatResponse response = chatClient.prompt(prompt).call().chatResponse();
+        return response.getResult().getOutput().getContent();
+    }
+
+    @Override
+    public String getForNewsResume(String news) {
+        String newQuestion = ASK_FOR_NEWS_PROMPT.replace("#NEWS#", news);
+        PromptTemplate promptTemplate = new PromptTemplate(newQuestion);
         Prompt prompt = promptTemplate.create();
         ChatResponse response = chatClient.prompt(prompt).call().chatResponse();
         return response.getResult().getOutput().getContent();
