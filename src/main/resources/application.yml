@@ -9,8 +9,7 @@ spring:
   ###########################
   ai:
     openai:
-      #api-key: ${OPEN_AI_API_KEY}
-      api-key: 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
+      api-key: ${OPEN_AI_API_KEY}
       embedding:
         options:
           model: text-embedding-3-small
