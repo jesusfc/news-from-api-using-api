@@ -36,6 +36,21 @@ public class NewsEntity {
     @Column(name = "description")
     private String description;
 
+    @Column(name = "published_at")
+    private String publishedAt;
+
+    @Column(name = "banner_image_url")
+    private String bannerImageUrl;
+
+    @Column(name = "source")
+    private String source;
+
+    @Column(name = "source_domain")
+    private String sourceDomain;
+
+    //@Column(name = "authors")
+    //private List<String> authors;
+
     /*
     private String description;
     private String keywords;

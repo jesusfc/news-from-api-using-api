@@ -1,5 +1,6 @@
 package com.jesusfc.news.model.theNewsApi;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.Builder;
 
 /**
@@ -20,7 +21,10 @@ public class Data {
     private String image_url;
     private String language;
     private String published_at;
+
     private String source;
+    private String source_domain;
+
     private String[] categories;
     private String relevance_score;
     private String locale;

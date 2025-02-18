@@ -1,6 +1,7 @@
 package com.jesusfc.news.service;
 
 import com.jesusfc.news.database.entity.NewsEntity;
+import com.jesusfc.news.model.theNewsApi.ApiNewsResponse;
 import com.jesusfc.news.service.IAService.OpenAIService;
 import com.jesusfc.news.service.externalApiNews.TheNewsApiFeignService;
 import lombok.RequiredArgsConstructor;
@@ -26,20 +27,31 @@ public class CronServiceImpl implements CronService {
     @Override
     public void addNews() {
 
-        //ApiNewsResponse apiNewsResponse = theNewsApiFeignService.getHighlightsNews("us");
-        //List<Data> dataList = apiNewsResponse.getData();
-        List<NewsEntity> news = newsService.getNews();
-        for (NewsEntity n : news) {
+        ApiNewsResponse apiNewsResponse = theNewsApiFeignService.getHighlightsNews("us");
+        List<com.jesusfc.news.model.theNewsApi.Data> dataList = apiNewsResponse.getData();
+        dataList.forEach(data -> {
 
-            System.out.println("News: " + n.getTitle());
-            System.out.println("Article: " + n.getDescription());
-            String newTitle = openAIService.getForNewTitle(n.getTitle());
-            String newNews = openAIService.getForNewsResume(n.getDescription());
+            // Only English news
+            if (data.getLanguage().equals("us")) {
 
-            System.out.println("NewTitle: " + newTitle);
-            System.out.println("NewArticle: " + newNews);
+                // Get new title and news from OpenAI
+                String newTitle = openAIService.getForNewTitle(data.getTitle());
+                String newNews = openAIService.getForNewsResume(data.getDescription());
 
-        }
+                NewsEntity newsEntity = NewsEntity.builder()
+                        .uuid(data.getUuid())
+                        .title(newTitle)
+                        .description(newNews)
+                        .publishedAt(data.getPublished_at())
+                        .bannerImageUrl(data.getImage_url())
+                        .source(data.getSource())
+                        .sourceDomain(data.getSource_domain())
+                        .build();
+
+                // Save News
+                newsService.saveNews(newsEntity);
+            }
+        });
 
     }
 }

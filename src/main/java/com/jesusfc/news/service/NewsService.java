@@ -13,5 +13,6 @@ public interface NewsService {
 
     List<NewsEntity> getNews();
     NewsEntity getNewsById(long id);
+    void saveNews(NewsEntity newsEntity);
 
 }
