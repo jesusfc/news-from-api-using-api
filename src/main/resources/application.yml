@@ -29,5 +29,5 @@ logging:
 ###########################
 api-service:
   the-news-api:
-    api_token: xQxMrXS35s6ydh24TfOBoMYVLsIG2JkwlQG0wB2R
+    api_token: ${NEWS_API_KEY}
     url: https://api.thenewsapi.com/v1/news
