@@ -21,7 +21,8 @@ public class BootstrapLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        loadBasics();
+
+        //loadBasics();
     }
 
     private void loadBasics() {

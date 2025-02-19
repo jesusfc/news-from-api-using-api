@@ -36,32 +36,34 @@ public class NewsEntity {
     @Column(name = "description")
     private String description;
 
+    @Column(name = "keywords")
+    private String keywords;
+
+    @Column(name = "snippet")
+    private String snippet;
+
     @Column(name = "published_at")
     private String publishedAt;
 
-    @Column(name = "banner_image_url")
-    private String bannerImageUrl;
+    @Column(name = "url")
+    private String url;
+
+    @Column(name = "image_url")
+    private String imageUrl;
+
+    @Column(name = "language")
+    private String language;
 
     @Column(name = "source")
     private String source;
 
-    @Column(name = "source_domain")
-    private String sourceDomain;
+    @Column(name = "relevance_score")
+    private String relevanceScore;
 
-    //@Column(name = "authors")
-    //private List<String> authors;
-
-    /*
-    private String description;
-    private String keywords;
-    private String snippet;
-    private String url;
-    private String image_url;
-    private String language;
-    private String published_at;
-    private String source;
-    private String[] categories;
-    private String relevance_score;
+    @Column(name = "locale")
     private String locale;
-*/
+
+    //@Column(name = "categories")
+    //private String[] categories;
+
 }

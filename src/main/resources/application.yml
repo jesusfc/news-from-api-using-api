@@ -4,6 +4,9 @@ server:
 spring:
   application:
     name: news
+  jpa:
+    hibernate:
+      ddl-auto: update
   ###########################
   #### OPEN API SETTINGS #######
   ###########################
