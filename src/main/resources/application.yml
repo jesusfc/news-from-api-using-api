@@ -9,7 +9,8 @@ spring:
   ###########################
   ai:
     openai:
-      api-key: ${OPEN_AI_API_KEY}
+      ##api-key: ${OPEN_AI_API_KEY}
+      api-key: ##############################
       embedding:
         options:
           model: text-embedding-3-small
@@ -29,5 +30,7 @@ logging:
 ###########################
 api-service:
   the-news-api:
-    api_token: ${NEWS_API_KEY}
+    ##api_token: ${NEWS_API_KEY}
+    api_token: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
     url: https://api.thenewsapi.com/v1/news
+
