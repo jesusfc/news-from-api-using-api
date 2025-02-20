@@ -32,9 +32,9 @@ public class NewsServiceImpl implements NewsService {
 
     @Override
     public void saveNews(NewsEntity newsEntity) {
-
-        newsRepository.existsByUuidContains(newsEntity.getUuid());
-        newsRepository.save(newsEntity);
+        if (!newsRepository.existsByUuidContains(newsEntity.getUuid())) {
+            newsRepository.save(newsEntity);
+        }
     }
 
 }
